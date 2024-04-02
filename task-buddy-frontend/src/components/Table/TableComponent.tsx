@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { DataGrid, GridDeleteIcon } from "@mui/x-data-grid";
 import {
   useDeletePostMutation,
@@ -29,7 +29,6 @@ const TableComponent = () => {
     progress: 0,
     status: "",
   });
-  const [taskId, setTaskId] = useState<string>();
 
   const handleModify = async (row: Task) => {
     try {
@@ -57,7 +56,7 @@ const TableComponent = () => {
 
   const handleDelete = async (row: Task) => {
     try {
-      await deletePost(row._id).unwrap();
+      row._id && (await deletePost(row._id).unwrap());
     } catch (error) {
       console.error(error);
     }
@@ -107,18 +106,21 @@ const TableComponent = () => {
     },
   ];
 
-  const rows = isSuccess
-    ? currentData.data.map((task: Task, index: number) => ({
-        crtNo: index + 1,
-        _id: task._id,
-        title: task.title,
-        description: task.description,
-        priority: task.priority,
-        progress: task.progress,
-        status: task.status,
-        timestamp: task.timestamp,
-      }))
-    : [];
+  const rows =
+    isSuccess && currentData
+      ? currentData.data.map((task: Task, index: number) => ({
+          crtNo: index + 1,
+          _id: task._id,
+          title: task.title,
+          description: task.description,
+          priority: task.priority,
+          progress: task.progress,
+          status: task.status,
+          timestamp: task.timestamp,
+        }))
+      : [];
+
+  console.log(currentData);
 
   return (
     <div>
@@ -127,7 +129,7 @@ const TableComponent = () => {
         <DataGrid
           rows={rows}
           columns={columns}
-          getRowId={(row) => row.crtNo}
+          getRowId={(row) => row.crtNo || ""}
           initialState={{
             pagination: {
               paginationModel: { page: 0, pageSize: 5 },
@@ -140,11 +142,7 @@ const TableComponent = () => {
           rowSelection={false}
         />
       </div>
-      <AddTaskModal
-        open={openModal}
-        handleClose={handleClose}
-        taskId={taskId}
-      />
+      <AddTaskModal openModal={openModal} handleClose={handleClose} />
       <ModifyTaskModal
         openModifyModal={openModifyModal}
         handleClose={() => setOpenModifyModal(false)}

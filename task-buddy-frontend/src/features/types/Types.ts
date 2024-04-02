@@ -7,18 +7,29 @@ export interface User {
 }
 }
 
+export interface UserLogin {
+    username: string;
+    password: string;
+  }
+
 export interface Auth {
     auth: User
 }
+
 
 export interface Task {
     crtNo?: number,
     _id?: string,
     title: string,
     description: string,
-    addedBy: string,
+    addedBy?: string,
     priority: string,
     progress: number,
     status: string,
-    timestamp?: Date
+    timestamp?: Date,
+    success?: boolean
 }
+
+export interface DataResponse<Task> {
+    data: Task[];
+  }

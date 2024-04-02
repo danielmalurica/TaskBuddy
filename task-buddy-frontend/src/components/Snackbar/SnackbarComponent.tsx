@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useState } from "react";
+import React from "react";
 import {
   Alert,
   AlertColor,
@@ -12,7 +12,7 @@ type Props = {
   open: boolean;
   snackbarMessage: string;
   handleClose: (
-    event?: Event | SyntheticEvent<any, Event>,
+    event?: React.SyntheticEvent | Event,
     reason?: SnackbarCloseReason
   ) => void;
   severity: OverridableStringUnion<AlertColor, AlertPropsColorOverrides>;

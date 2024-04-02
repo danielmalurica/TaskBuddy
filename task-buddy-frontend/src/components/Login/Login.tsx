@@ -18,20 +18,18 @@ import { setCredentials } from "../../features/authSlice";
 import { useNavigate } from "react-router-dom";
 import SnackbarComponent from "../Snackbar/SnackbarComponent";
 import { OverridableStringUnion } from "@mui/types";
+import { UserLogin } from "../../features/types/Types";
 
 const Login = () => {
-  interface UserLogin {
-    username: string;
-    password: string;
-  }
-
   const [loginUser] = useLoginMutation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [severity, setSeverity] =
-    useState<OverridableStringUnion<AlertColor, AlertPropsColorOverrides>>();
+    useState<OverridableStringUnion<AlertColor, AlertPropsColorOverrides>>(
+      "success"
+    );
 
   const [userLogin, setUserLogin] = useState<UserLogin>({
     username: "",
@@ -51,7 +49,6 @@ const Login = () => {
     if (reason === "clickaway") {
       return;
     }
-
     setOpenSnackbar(false);
   };
   const handleClickShowPassword = () => setShowPassword((show) => !show);

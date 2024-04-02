@@ -1,5 +1,5 @@
 import { apiSlice } from "../apiSlice";
-import { User } from "../types/Types";
+import { User, UserLogin } from "../types/Types";
 
 
 
@@ -9,7 +9,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
             query: (id) => `user/${id}`,
             providesTags: (result, error, id) => [{ type: 'Users', id }],
           }),
-      register: builder.mutation<User, Partial<User>>({
+      register: builder.mutation<User, UserLogin>({
         query: (data) => ({
           url: `user/create`,
           method: "POST",
@@ -19,7 +19,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
         }),
         invalidatesTags: ['Users'],
       }),
-      login: builder.mutation<User, Partial<User>>({
+      login: builder.mutation<User, UserLogin>({
         query: (data) => ({
           url: `user/login`,
           method: "POST",

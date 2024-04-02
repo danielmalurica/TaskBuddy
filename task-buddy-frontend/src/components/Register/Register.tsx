@@ -32,7 +32,9 @@ const Register = () => {
 
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [severity, setSeverity] =
-    useState<OverridableStringUnion<AlertColor, AlertPropsColorOverrides>>();
+    useState<OverridableStringUnion<AlertColor, AlertPropsColorOverrides>>(
+      "success"
+    );
   const [snackMessage, setSnackMessage] = useState<string>("");
   const [showPassword, setShowPassword] = useState(false);
 

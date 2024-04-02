@@ -8,11 +8,11 @@ import {
 import Homepage from "./screens/Homepage/Homepage";
 import LoginAndRegister from "./screens/LoginAndRegister/LoginAndRegister";
 import { useSelector } from "react-redux";
-import { User } from "./features/types/Types";
+import { Auth } from "./features/types/Types";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
-  const user = useSelector((state: User) => state.auth.userInfo);
+  const user = useSelector((state: Auth) => state.auth.userInfo);
 
   useEffect(() => {
     setIsLoading(false);

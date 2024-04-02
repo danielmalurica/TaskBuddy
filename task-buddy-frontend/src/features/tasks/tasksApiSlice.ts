@@ -1,10 +1,10 @@
 import { apiSlice } from "../apiSlice";
-import { Task } from "../types/Types";
+import { DataResponse, Task } from "../types/Types";
 
 
 export const tasksApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
-        getTasksByUser: builder.query<Task, string>({
+        getTasksByUser: builder.query<DataResponse<Task>, string>({
             query: (id) => `task/${id}`,
             providesTags: (result, error, id) => [{ type: 'Tasks', id }],
           }),
@@ -32,7 +32,7 @@ export const tasksApiSlice = apiSlice.injectEndpoints({
             },
             invalidatesTags: ['Tasks'],
           }),
-          deletePost: builder.mutation<Task, Partial<Task>>({
+          deletePost: builder.mutation<Task, string>({
             query(_id) {
               return {
                 url: `task/delete/${_id}`,

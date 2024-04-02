@@ -12,7 +12,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useAddPostMutation } from "../../features/tasks/tasksApiSlice";
 import { Auth, Task } from "../../features/types/Types";
@@ -43,7 +43,6 @@ type Props = {
   openModal: boolean;
   handleClose: () => void;
   openSnackbar?: OpenFunction;
-  taskId?: string;
 };
 
 const AddTaskModal = (props: Props) => {
@@ -93,7 +92,7 @@ const AddTaskModal = (props: Props) => {
           status: "",
         });
         handleClose();
-        openSnackbar();
+        openSnackbar && openSnackbar();
       }
     } catch (error) {
       console.log(error);

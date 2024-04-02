@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import React, { useState } from "react";
+import { useState } from "react";
 import AddTaskModal from "./AddTaskModal";
 
 type OpenFunction = () => void;
