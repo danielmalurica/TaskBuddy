@@ -57,6 +57,7 @@ export const login = async (req, res) => {
             httpOnly: true,
             expires: token.expiresIn,
             secure: true,
+            sameSite: "None",
           })
           .status(200)
           .json({ success: true, message: "success", user });
