@@ -54,9 +54,10 @@ export const login = async (req, res) => {
 
         res
           .cookie("accessToken", token, {
-            expires: token.expiresIn,
+            //expires: token.expiresIn,
             secure: true,
             sameSite: "None",
+            maxAge: 30000,
           })
           .status(200)
           .json({ success: true, message: "success", user });
