@@ -57,7 +57,7 @@ export const login = async (req, res) => {
             //expires: token.expiresIn,
             secure: true,
             sameSite: "None",
-            maxAge: 30000,
+            maxAge: 259200000,
           })
           .status(200)
           .json({ success: true, message: "success", user });
