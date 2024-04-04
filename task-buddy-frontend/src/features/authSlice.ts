@@ -18,6 +18,8 @@ const storedUserInfo = storedUserInfoString
   ? JSON.parse(storedUserInfoString)
   : null;
 
+  console.log(storedUserInfo)
+
 const initialState: AuthState = {
   userInfo: storedUserInfo
 }
